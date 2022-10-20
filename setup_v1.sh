@@ -7,21 +7,34 @@ echo "/swapfile   swap    swap    sw  0   0" >> /etc/fstab
 
 mkdir ./backed -p
 
-DEBIAN_FRONTEND=noninteractive \
-apt-get \
--o Dpkg::Options::=--force-confold \
--o Dpkg::Options::=--force-confdef \
--y --allow-downgrades --allow-remove-essential --allow-change-held-packages \
-update 
+# DEBIAN_FRONTEND=noninteractive \
+# apt-get \
+# -o Dpkg::Options::=--force-confold \
+# -o Dpkg::Options::=--force-confdef \
+# -y --allow-downgrades --allow-remove-essential --allow-change-held-packages \
+# update
 
-# ubuntu update initial
-#apt update -y && apt upgrade -y
-DEBIAN_FRONTEND=noninteractive \
-apt-get \
--o Dpkg::Options::=--force-confold \
--o Dpkg::Options::=--force-confdef \
--y --allow-downgrades --allow-remove-essential --allow-change-held-packages \
-dist-upgrade
+# # ubuntu update initial
+# #apt update -y && apt upgrade -y
+# DEBIAN_FRONTEND=noninteractive \
+# apt-get \
+# -o Dpkg::Options::=--force-confold \
+# -o Dpkg::Options::=--force-confdef \
+# -y --allow-downgrades --allow-remove-essential --allow-change-held-packages \
+# dist-upgrade
+
+#https://unix.stackexchange.com/questions/107194/make-apt-get-update-and-upgrade-automate-and-unattended
+export DEBIAN_FRONTEND=noninteractive
+export DEBIAN_PRIORITY=critical
+sudo -E apt-get -qy update
+sudo -E apt-get -qy -o "Dpkg::Options::=--force-confdef" -o "Dpkg::Options::=--force-confold" upgrade
+sudo -E apt-get -qy autoclean
+
+# export DEBIAN_FRONTEND=noninteractive
+# export DEBIAN_PRIORITY=critical
+# sudo -E apt-get -qy update
+# sudo -E apt-get -qy -o "Dpkg::Options::=--force-confdef" -o "Dpkg::Options::=--force-confold" upgrade
+# sudo -E apt-get -qy autoclean
 
 
 # change date time
