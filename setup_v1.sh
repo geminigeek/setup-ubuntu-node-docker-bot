@@ -23,6 +23,7 @@ mkdir ./backed -p
 # -y --allow-downgrades --allow-remove-essential --allow-change-held-packages \
 # dist-upgrade
 
+#working
 #https://unix.stackexchange.com/questions/107194/make-apt-get-update-and-upgrade-automate-and-unattended
 export DEBIAN_FRONTEND=noninteractive
 export DEBIAN_PRIORITY=critical
