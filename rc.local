@@ -1,0 +1,4 @@
+#!/bin/bash
+
+/sbin/ifconfig eth0 txqueuelen 65000
+exit 0
