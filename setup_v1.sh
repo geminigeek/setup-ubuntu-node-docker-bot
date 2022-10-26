@@ -51,7 +51,7 @@ apt-get install curl wget iftop iotop screen net-tools inetutils-traceroute -y
 apt-get install build-essential libpcre3 libpcre3-dev zlib1g zlib1g-dev libssl-dev libgd-dev libxml2 libxml2-dev uuid-dev  apt-transport-https     ca-certificates     curl     gnupg-agent     software-properties-common -y
 
 # install node
-curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
 apt-get install -y nodejs
 node -v
 
