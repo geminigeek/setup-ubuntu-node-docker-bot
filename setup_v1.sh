@@ -2,7 +2,7 @@
 
 
 
-fallocate -l 8G /swapfile &&  chmod 600 /swapfile &&  mkswap /swapfile && swapon /swapfile
+sudo fallocate -l 8G /swapfile &&  chmod 600 /swapfile &&  mkswap /swapfile && swapon /swapfile
 echo "/swapfile   swap    swap    sw  0   0" >> /etc/fstab
 
 mkdir ./backed -p
@@ -88,7 +88,7 @@ sudo sysctl -p
 sudo sysctl -a
 
 # will work after re login
-sudo ulimit -n
+ulimit -n
 
 sudo cp /etc/rc.local ./backed/rc.local
 
@@ -113,8 +113,8 @@ sudo ifconfig
 
 ## now download the multitor
 
-sudo git clone https://github.com/geminigeek/docker-multitor.git geminigeek-docker-multitor
-sudo cd geminigeek-docker-multitor
+git clone https://github.com/geminigeek/docker-multitor.git geminigeek-docker-multitor
+cd geminigeek-docker-multitor
 sudo docker build -t multitor-orig-polipo-exposed-ha .
 
 
@@ -131,7 +131,7 @@ sudo echo "now running curl "
 sudo curl -k --location --proxy 127.0.0.1:15379 https://ipinfo.io/ip
 
 ## coming back to root
-sudo cd ..
+cd ..
 
 sudo npm init -y
 sudo npm i got hpagent fingerprint-generator
