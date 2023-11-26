@@ -146,8 +146,8 @@ sudo node test.mjs
 
 sudo mkdir /root/ops-folder -p
 
-sudo cd /root/ops-folder
+cd /root/ops-folder
 
 # now rsync into the /root/ops-folder whatever we want
 
-sudo echo "done.  Now reboot"
+echo "done.  Now reboot"
