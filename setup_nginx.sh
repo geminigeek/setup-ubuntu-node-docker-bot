@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "[arch=amd64] http://nginx.org/packages/mainline/debian/ bookworm nginx" >>/etc/apt/sources.list.d/nginx.list
+echo "deb [arch=amd64] http://nginx.org/packages/mainline/debian/ bookworm nginx" >>/etc/apt/sources.list.d/nginx.list
 echo "deb-src http://nginx.org/packages/mainline/debian/ bookworm nginx" >>/etc/apt/sources.list.d/nginx.list
 
 apt update -y
