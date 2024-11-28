@@ -11,3 +11,6 @@ apt-key export 7BD9BF62 | gpg --dearmour -o /etc/apt/trusted.gpg.d/nginx-key.gpg
 apt update -y
 
 apt install nginx -y
+
+sudo systemctl start nginx
+sudo systemctl enable nginx
