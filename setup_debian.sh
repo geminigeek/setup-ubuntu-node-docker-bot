@@ -75,16 +75,22 @@ ulimit -n
 # install docker
 sudo curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
-# add this is /etc/docker/daemon.json
-sudo echo > '{
-  "default-ulimits": {
-    "nofile": {
-      "Name": "nofile",
-      "Soft": 1048576,
-      "Hard": 1048576
-    }
-  }
-}'> /etc/docker/daemon.json
+# add this json to set ulimits for docker containers
+sudo mkdir -p /etc/docker
+sudo tee /etc/docker/daemon.json > /dev/null <<'EOF'
+{
+	"default-ulimits": {
+		"nofile": {
+			"Name": "nofile",
+			"Soft": 1048576,
+			"Hard": 1048576
+		}
+	}
+}
+EOF
+
+# restart docker to apply the new daemon config (ignore errors if systemctl unavailable)
+sudo systemctl restart docker || sudo service docker restart || true
 
 sudo cp /etc/rc.local ./backed/rc.local
 
