@@ -17,26 +17,50 @@ sudo apt-get install build-essential libpcre3 libpcre3-dev zlib1g zlib1g-dev lib
 # install node
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
 
-# install docker
-sudo curl -fsSL https://get.docker.com -o get-docker.sh
-sudo sh get-docker.sh
+
 
 ## more ports
-sudo sudo echo "net.ipv4.ip_local_port_range = 9999 65535" >>/etc/sysctl.conf
+# sudo sudo echo "net.ipv4.ip_local_port_range = 9999 65535" >>/etc/sysctl.conf
 
 #good for crawling
-sudo echo "net.ipv4.tcp_fin_timeout = 2" >>/etc/sysctl.conf
-sudo echo "vm.swappiness = 10" >>/etc/sysctl.conf
+# sudo echo "net.ipv4.tcp_fin_timeout = 2" >>/etc/sysctl.conf
+# sudo echo "vm.swappiness = 10" >>/etc/sysctl.conf
 
 # also good for crawling but not using it now
+# sudo echo "net.ipv4.tcp_tw_reuse = 1" >>/etc/sysctl.conf
+
+sudo echo "net.ipv4.ip_local_port_range = 1024 65535" >>/etc/sysctl.conf
+sudo echo "net.ipv4.tcp_fin_timeout = 2" >>/etc/sysctl.conf
 sudo echo "net.ipv4.tcp_tw_reuse = 1" >>/etc/sysctl.conf
+sudo echo "vm.swappiness=10" >>/etc/sysctl.conf
+
+sudo echo "net.core.wmem_max = 16777216" >>/etc/sysctl.conf
+sudo echo "net.core.wmem_default = 131072" >>/etc/sysctl.conf
+sudo echo "net.core.rmem_max = 16777216" >>/etc/sysctl.conf
+sudo echo "net.core.rmem_default = 131072" >>/etc/sysctl.conf
+sudo echo "net.ipv4.tcp_rmem = 4096 131072 16777216" >>/etc/sysctl.conf
+sudo echo "net.ipv4.tcp_wmem = 4096 131072 16777216" >>/etc/sysctl.conf
+sudo echo "net.ipv4.tcp_mem = 4096 131072 16777216" >>/etc/sysctl.conf
+sudo echo "net.core.netdev_max_backlog = 30000" >>/etc/sysctl.conf
+sudo echo "net.core.somaxconn=2147483647" >>/etc/sysctl.conf
+sudo echo "vm.overcommit_memory=1" >>/etc/sysctl.conf
+sudo echo "fs.file-max = 9223372036854775807" >>/etc/sysctl.conf
+sudo echo "vm.max_map_count=9999999" >>/etc/sysctl.conf
+
+
 sudo echo "session required pam_limits.so" >>/etc/pam.d/common-session
+sudo echo "session required pam_limits.so" >>/etc/pam.d/common-session-noninteractive
 
 ## file desctiptors
 sudo echo "root soft nproc 65535" >>/etc/security/limits.conf
 sudo echo "root hard nproc 65535" >>/etc/security/limits.conf
 sudo echo "root soft nofile 65535" >>/etc/security/limits.conf
 sudo echo "root hard nofile 65535" >>/etc/security/limits.conf
+
+sudo echo "* soft nproc 65535" >>/etc/security/limits.conf
+sudo echo "* hard nproc 65535" >>/etc/security/limits.conf
+sudo echo "* soft nofile 65535" >>/etc/security/limits.conf
+sudo echo "* hard nofile 65535" >>/etc/security/limits.conf
 
 # apply settings
 sudo sysctl -p
@@ -46,6 +70,21 @@ sudo sysctl -a
 
 # will work after re login
 ulimit -n
+
+
+# install docker
+sudo curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+# add this is /etc/docker/daemon.json
+sudo echo > '{
+  "default-ulimits": {
+    "nofile": {
+      "Name": "nofile",
+      "Soft": 1048576,
+      "Hard": 1048576
+    }
+  }
+}'> /etc/docker/daemon.json
 
 sudo cp /etc/rc.local ./backed/rc.local
 
