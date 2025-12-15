@@ -52,15 +52,15 @@ sudo echo "session required pam_limits.so" >>/etc/pam.d/common-session
 sudo echo "session required pam_limits.so" >>/etc/pam.d/common-session-noninteractive
 
 ## file desctiptors
-sudo echo "root soft nproc 65535" >>/etc/security/limits.conf
-sudo echo "root hard nproc 65535" >>/etc/security/limits.conf
-sudo echo "root soft nofile 65535" >>/etc/security/limits.conf
-sudo echo "root hard nofile 65535" >>/etc/security/limits.conf
+sudo echo "root soft nproc 1048576" >>/etc/security/limits.conf
+sudo echo "root hard nproc 1048576" >>/etc/security/limits.conf
+sudo echo "root soft nofile 1048576" >>/etc/security/limits.conf
+sudo echo "root hard nofile 1048576" >>/etc/security/limits.conf
 
-sudo echo "* soft nproc 65535" >>/etc/security/limits.conf
-sudo echo "* hard nproc 65535" >>/etc/security/limits.conf
-sudo echo "* soft nofile 65535" >>/etc/security/limits.conf
-sudo echo "* hard nofile 65535" >>/etc/security/limits.conf
+sudo echo "* soft nproc 1048576" >>/etc/security/limits.conf
+sudo echo "* hard nproc 1048576" >>/etc/security/limits.conf
+sudo echo "* soft nofile 1048576" >>/etc/security/limits.conf
+sudo echo "* hard nofile 1048576" >>/etc/security/limits.conf
 
 # apply settings
 sudo sysctl -p
