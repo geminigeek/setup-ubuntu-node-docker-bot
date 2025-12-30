@@ -11,8 +11,8 @@ mkdir ./backed -p
 # change date time
 sudo timedatectl set-timezone Asia/Kolkata
 
-sudo apt-get install curl wget iftop iotop screen net-tools inetutils-traceroute htop bash-completion rsync dstat vnstat htop ufw fail2ban sysstat unzip -y
-sudo apt-get install build-essential libpcre3 libpcre3-dev zlib1g zlib1g-dev libssl-dev libgd-dev libxml2 libxml2-dev uuid-dev apt-transport-https ca-certificates curl gnupg-agent software-properties-common -y
+sudo apt-get install curl wget iftop iotop screen net-tools inetutils-traceroute htop bash-completion rsync dstat vnstat htop ufw fail2ban sysstat unzip libc++-dev -y
+sudo apt-get install build-essential libpcre3 libpcre3-dev zlib1g zlib1g-dev libssl-dev libgd-dev libxml2 libxml2-dev uuid-dev apt-transport-https ca-certificates curl gnupg-agent software-properties-common libc++-dev -y
 
 # install node
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash

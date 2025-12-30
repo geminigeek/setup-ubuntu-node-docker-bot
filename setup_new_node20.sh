@@ -47,8 +47,8 @@ sudo apt update -y
 # install dev tools
 
 
-sudo apt-get install curl wget iftop iotop screen net-tools inetutils-traceroute htop bash-completion -y
-sudo apt-get install build-essential libpcre3 libpcre3-dev zlib1g zlib1g-dev libssl-dev libgd-dev libxml2 libxml2-dev uuid-dev  apt-transport-https     ca-certificates     curl     gnupg-agent     software-properties-common -y
+sudo apt-get install curl wget iftop iotop screen net-tools inetutils-traceroute htop bash-completion libc++-dev -y
+sudo apt-get install build-essential libpcre3 libpcre3-dev zlib1g zlib1g-dev libssl-dev libgd-dev libxml2 libxml2-dev uuid-dev  apt-transport-https     ca-certificates     curl     gnupg-agent     software-properties-common libc++-dev -y
 
 # install node
 sudo apt-get install -y ca-certificates curl gnupg
